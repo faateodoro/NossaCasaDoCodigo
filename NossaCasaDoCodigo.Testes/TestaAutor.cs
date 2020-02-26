@@ -36,18 +36,25 @@ namespace NossaCasaDoCodigo.Testes
         [Theory]
         [InlineData("Fabiano", "fabiano@gmail.com", "")]
         [InlineData("Fabiano", "fabiano@gmail.com", null)]
-        [InlineData("Fabiano", "fabiano@gmail.com",
+        
+        public void CampoDescricaoNaoPodeSerVazioOuNulo(string nome, string email, string descricao)
+        {
+            Assert.Throws<ArgumentNullException>(() => new Autor(nome, email, descricao));
+        }
+        
+        [Fact]
+        public void CampoDescricaoNaoPodeTerMaisDeQuatrocentrosCaracteres()
+        {
+            Assert.Throws<ArgumentException>(() => new Autor
+            ("Fabiano", 
+            "fabiano@gmail.com",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
             "Aliquam non condimentum tellus. Nulla vulputate enim et sodales vehicula. " +
             "Aenean vel scelerisque augue. Pellentesque luctus ornare tincidunt. " +
             "Vivamus ultrices est massa, quis luctus ex posuere et. " +
             "Duis commodo urna sed velit accumsan volutpat. " +
             "Vivamus eu nisl in orci mollis efficitur id at ex. Vivamus vel molestie urna. " +
-            "Ut fringilla feugiat lacinia. Morbi cras amet.")]
-        public void CampoDescricaoNaoPodeSerVazioOuNuloComMenosDeQuatrocentrosCaracteres
-            (string nome, string email, string descricao)
-        {
-            Assert.Throws<ArgumentException>(() => new Autor(nome, email, descricao));
+            "Ut fringilla feugiat lacinia. Morbi cras amet."));
         }
 
         [Fact]
@@ -55,6 +62,19 @@ namespace NossaCasaDoCodigo.Testes
         {
             var autor = new Autor("Fabiano", "fabiano@gmail.com", "Um cara iniciando na carrera de TI.");
             Assert.False(string.IsNullOrEmpty(autor.DataCadastro));
+        }
+
+        [Fact]
+        public void TodasAsValidacoesEstaoFuncionandoAoInserirDadosValidos()
+        {
+            IList<Autor> autores = new List<Autor>
+            {
+                new Autor("Fabiano", "fabiano@gmail.com", "Um cara iniciando na carrera de TI."),
+                new Autor("Ana", "ana@gmail.com", "Uma moça pensando em que carreira seguir."),
+                new Autor("Clara", "clara@alura.com.br", "Uma menininha linda!")
+            };
+
+            Assert.Equal(3, autores.Count);
         }
     }
 }

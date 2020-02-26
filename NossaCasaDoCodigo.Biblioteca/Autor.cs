@@ -5,17 +5,16 @@ namespace NossaCasaDoCodigo.Biblioteca
 {
     public class Autor
     {
+        #region Campos
         private string _nome;
 
         public string Nome
         {
             get { return _nome; }
-            private set 
+
+            private set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("O nome deve ser informado.");
-                else
-                    _nome = value; 
+                _nome = ValidaNome(value);
             }
         }
 
@@ -24,6 +23,7 @@ namespace NossaCasaDoCodigo.Biblioteca
         public string Email
         {
             get { return _email; }
+
             private set
             {
                 _email = ValidaEmail(value);
@@ -35,18 +35,15 @@ namespace NossaCasaDoCodigo.Biblioteca
         public string Descricao
         {
             get { return _descricao; }
-            private set 
+
+            private set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("A descrição não pode ser vazia.");
-                else if (value.Length > 400)
-                    throw new ArgumentException("A descrição não pode ter mais que 400 caracteres.");
-                else
-                    _descricao = value; 
+                _descricao = ValidaDescricao(value);
             }
         }
 
         public string DataCadastro { get; }
+        #endregion
 
         public Autor(string nome, string email, string descricao)
         {
@@ -57,14 +54,35 @@ namespace NossaCasaDoCodigo.Biblioteca
             DataCadastro = DateTime.Now.ToString();
         }
 
+        #region Validações
+        private string ValidaNome(string nome)
+        {
+            if (string.IsNullOrWhiteSpace(nome))
+                throw new ArgumentException("O nome deve ser informado.");
+
+            return nome;
+        }
+
+        private string ValidaDescricao(string descricao)
+        {
+            if (string.IsNullOrWhiteSpace(descricao))
+                throw new ArgumentNullException("A descrição não pode ser vazia.");
+            
+            if (descricao.Length > 400)
+                throw new ArgumentException("A descrição não pode ter mais que 400 caracteres.");
+
+            return descricao;
+        }
+
         private string ValidaEmail(string email)
         {
             Regex expressao = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 
             if (!expressao.IsMatch(email))
                 throw new ArgumentException("O formato do e-mail é inválido.");
-            else
-                return email;
+                
+            return email;
         }
+        #endregion
     }
 }
