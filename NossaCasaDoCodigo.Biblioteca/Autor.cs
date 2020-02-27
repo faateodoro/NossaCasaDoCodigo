@@ -14,7 +14,10 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             private set
             {
-                _nome = ValidaNome(value);
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("O nome deve ser informado.");
+
+                _nome = value;
             }
         }
 
@@ -26,7 +29,10 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             private set
             {
-                _email = ValidaEmail(value);
+                if (!ValidaEmail(value))
+                    throw new ArgumentException("O formato do e-mail é inválido.");
+
+                _email = value;
             }
         }
 
@@ -38,7 +44,13 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             private set
             {
-                _descricao = ValidaDescricao(value);
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException("A descrição não pode ser vazia.");
+
+                if (value.Length > 400)
+                    throw new ArgumentException("A descrição não pode ter mais que 400 caracteres.");
+
+                _descricao = value;
             }
         }
 
@@ -53,36 +65,12 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             DataCadastro = DateTime.Now.ToString();
         }
-
-        #region Validações
-        private string ValidaNome(string nome)
-        {
-            if (string.IsNullOrWhiteSpace(nome))
-                throw new ArgumentException("O nome deve ser informado.");
-
-            return nome;
-        }
-
-        private string ValidaDescricao(string descricao)
-        {
-            if (string.IsNullOrWhiteSpace(descricao))
-                throw new ArgumentNullException("A descrição não pode ser vazia.");
-            
-            if (descricao.Length > 400)
-                throw new ArgumentException("A descrição não pode ter mais que 400 caracteres.");
-
-            return descricao;
-        }
-
-        private string ValidaEmail(string email)
+        
+        private bool ValidaEmail(string email)
         {
             Regex expressao = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 
-            if (!expressao.IsMatch(email))
-                throw new ArgumentException("O formato do e-mail é inválido.");
-                
-            return email;
+            return expressao.IsMatch(email);
         }
-        #endregion
     }
 }
