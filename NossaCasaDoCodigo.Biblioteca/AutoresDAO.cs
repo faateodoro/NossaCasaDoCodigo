@@ -8,29 +8,29 @@ namespace NossaCasaDoCodigo.Biblioteca
     {
         public AutoresDAO()
         {
+            Autores = new List<Autor>();
         }
 
-        public static IList<Autor> Autores { get; set; }
+        private static IList<Autor> Autores { get; set; }
 
-        public static bool SalvaAutor(Autor novoAutor)
+        public static void SalvaAutor(Autor novoAutor)
         {
-            if (Autores == null)
-            {
-                Autores = new List<Autor>();
-            }
+            if(ComparaEmail(novoAutor.Email))
+                Autores.Add(new Autor(novoAutor.Nome, novoAutor.Email, novoAutor.Descricao));
+        }
 
+        private static bool ComparaEmail(string email)
+        {
             if (Autores.Count > 0)
             {
                 foreach (var autor in Autores)
                 {
-                    if (novoAutor.Email == autor.Email)
+                    if (email == autor.Email)
                     {
                         throw new ArgumentException("Email já existente!");
                     }
                 }
             }
-
-            Autores.Add(new Autor(novoAutor.Nome, novoAutor.Email, novoAutor.Descricao));
             return true;
         }
     }

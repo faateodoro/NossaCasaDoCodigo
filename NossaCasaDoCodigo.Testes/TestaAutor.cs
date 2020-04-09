@@ -80,6 +80,7 @@ namespace NossaCasaDoCodigo.Testes
         [Fact]
         public void EmailNaoDeveSerDuplicado()
         {
+            new AutoresDAO();
             AutoresDAO.SalvaAutor(new Autor("Fabiano", "fabianoteodoro@gmail.com", "Um cara iniciando na carrera de TI."));
             AutoresDAO.SalvaAutor(new Autor("Ana", "anateodoro@gmail.com", "Uma moça pensando em que carreira seguir."));
             AutoresDAO.SalvaAutor(new Autor("Clara", "clarateodoro@alura.com.br", "Uma menininha linda!"));
