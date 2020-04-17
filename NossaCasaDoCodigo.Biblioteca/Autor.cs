@@ -72,5 +72,17 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             return expressao.IsMatch(email);
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+
+            Autor autor = (Autor)obj;
+
+            return this.Email == autor.Email ;
+        }
     }
 }

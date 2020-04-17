@@ -15,23 +15,17 @@ namespace NossaCasaDoCodigo.Biblioteca
 
         public static void SalvaAutor(Autor novoAutor)
         {
-            if(ComparaEmail(novoAutor.Email))
-                Autores.Add(new Autor(novoAutor.Nome, novoAutor.Email, novoAutor.Descricao));
-        }
-
-        private static bool ComparaEmail(string email)
-        {
             if (Autores.Count > 0)
             {
                 foreach (var autor in Autores)
                 {
-                    if (email == autor.Email)
+                    if (autor.Equals(novoAutor))
                     {
                         throw new ArgumentException("Email já existente!");
                     }
                 }
             }
-            return true;
+            Autores.Add(new Autor(novoAutor.Nome, novoAutor.Email, novoAutor.Descricao));
         }
     }
 }
