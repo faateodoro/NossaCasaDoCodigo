@@ -15,15 +15,9 @@ namespace NossaCasaDoCodigo.Biblioteca
 
         public static void SalvaAutor(Autor novoAutor)
         {
-            if (Autores.Count > 0)
+            if (Autores.Contains(novoAutor))
             {
-                foreach (var autor in Autores)
-                {
-                    if (autor.Equals(novoAutor))
-                    {
-                        throw new ArgumentException("Email já existente!");
-                    }
-                }
+                throw new ArgumentException("Email já existente!");
             }
             Autores.Add(new Autor(novoAutor.Nome, novoAutor.Email, novoAutor.Descricao));
         }
