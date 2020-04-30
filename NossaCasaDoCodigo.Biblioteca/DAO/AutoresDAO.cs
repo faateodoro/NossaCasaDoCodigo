@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NossaCasaDoCodigo.Biblioteca
+namespace NossaCasaDoCodigo.Biblioteca.DAO
 {
     public class AutoresDAO
     {
