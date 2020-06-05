@@ -13,7 +13,7 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
             Categorias = new List<Categoria>();
         }
 
-        public static string SalvaCategoria(Categoria novaCategoria)
+        public static string Salvar(Categoria novaCategoria)
         {
             if (Categorias.Contains(novaCategoria))
             {

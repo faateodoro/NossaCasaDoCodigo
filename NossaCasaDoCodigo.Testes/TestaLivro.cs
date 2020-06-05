@@ -34,7 +34,7 @@ namespace NossaCasaDoCodigo.Testes
                 TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50);
 
-            Assert.Equal($"Impossível cadastrar. O livro {novoLivro.Titulo} já existe.", LivrosDAO.SalvaLivro(novoLivro));
+            Assert.Equal($"Impossível cadastrar. O livro {novoLivro.Titulo} já existe.", LivrosDAO.Salvar(novoLivro));
         }
 
         [Fact]
@@ -99,19 +99,19 @@ namespace NossaCasaDoCodigo.Testes
                 new Autor("Fabiano Teodoro", "faateodoro@gmail.com", "Sem ideias para a descrição."), 
                 new Categoria("Programação"), 2.0, 35.50);
 
-            Assert.Equal($"O livro {novoLivro.Titulo} foi cadastrado com sucesso!", LivrosDAO.SalvaLivro(novoLivro));
+            Assert.Equal($"O livro {novoLivro.Titulo} foi cadastrado com sucesso!", LivrosDAO.Salvar(novoLivro));
         }
 
         private void CriaLivrosDao()
         {
             new LivrosDAO();
-            LivrosDAO.SalvaLivro(new Livro("PHP para baixinhos",
+            LivrosDAO.Salvar(new Livro("PHP para baixinhos",
                 TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50));
-            LivrosDAO.SalvaLivro(new Livro("Escrevi este livro e fiquei rico!",
+            LivrosDAO.Salvar(new Livro("Escrevi este livro e fiquei rico!",
                 TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50));
-            LivrosDAO.SalvaLivro(new Livro("Seja um coach quântico sem saber o significado de quântico.",
+            LivrosDAO.Salvar(new Livro("Seja um coach quântico sem saber o significado de quântico.",
                 TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50));
         }

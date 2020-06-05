@@ -13,7 +13,7 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
             Livros = new List<Livro>();
         }
 
-        public static string SalvaLivro(Livro novoLivro)
+        public static string Salvar(Livro novoLivro)
         {
             if (Livros.Contains(novoLivro))
             {

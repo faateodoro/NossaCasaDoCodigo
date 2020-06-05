@@ -13,7 +13,7 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
 
         private static IList<Autor> Autores { get; set; }
 
-        public static void SalvaAutor(Autor novoAutor)
+        public static void Salvar(Autor novoAutor)
         {
             if (Autores.Contains(novoAutor))
             {

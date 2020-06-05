@@ -25,7 +25,7 @@ namespace NossaCasaDoCodigo.Testes
             var novaCategoria = new Categoria("Testes");
 
             Assert.Equal($"Falha ao salvar. A categoria {novaCategoria.Nome} já existe.",
-                CategoriasDAO.SalvaCategoria(novaCategoria));
+                CategoriasDAO.Salvar(novaCategoria));
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace NossaCasaDoCodigo.Testes
             var novaCategoria = new Categoria("Programação");
 
             Assert.Equal($"Categoria {novaCategoria.Nome} criada com sucesso!",
-                CategoriasDAO.SalvaCategoria(novaCategoria));
+                CategoriasDAO.Salvar(novaCategoria));
         }
 
         [Fact]
@@ -49,9 +49,9 @@ namespace NossaCasaDoCodigo.Testes
         private static void CriaCategoriaDAO()
         {
             new CategoriasDAO();
-            CategoriasDAO.SalvaCategoria(new Categoria("Design"));
-            CategoriasDAO.SalvaCategoria(new Categoria("Marketing Digital"));
-            CategoriasDAO.SalvaCategoria(new Categoria("Testes"));
+            CategoriasDAO.Salvar(new Categoria("Design"));
+            CategoriasDAO.Salvar(new Categoria("Marketing Digital"));
+            CategoriasDAO.Salvar(new Categoria("Testes"));
         }
     }
 }
