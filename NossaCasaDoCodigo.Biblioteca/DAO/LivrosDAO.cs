@@ -23,5 +23,18 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
             Livros.Add(novoLivro);
             return $"O livro {novoLivro.Titulo} foi cadastrado com sucesso!";
         }
+
+        public static List<Livro> Buscar(string busca)
+        {
+            var livrosFiltrados = new List<Livro>();
+            foreach (var livro in Livros)
+            {
+                if (livro.Titulo.ToUpper().Contains(busca)) 
+                {
+                    livrosFiltrados.Add(livro);
+                }
+            }
+            return livrosFiltrados;
+        }
     }
 }
