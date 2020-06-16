@@ -13,13 +13,15 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
 
         private static IList<Autor> Autores { get; set; }
 
-        public static void Salvar(Autor novoAutor)
+        public static string Salvar(Autor novoAutor)
         {
             if (Autores.Contains(novoAutor))
             {
-                throw new ArgumentException("Email já existente!");
+                return $"Falha ao salvar. O email {novoAutor.Email} já existe.";
             }
+
             Autores.Add(new Autor(novoAutor.Nome, novoAutor.Email, novoAutor.Descricao));
+            return $"Autor {novoAutor.Nome} foi cadastrado com sucesso!";
         }
     }
 }

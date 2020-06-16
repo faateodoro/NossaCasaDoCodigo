@@ -86,9 +86,10 @@ namespace NossaCasaDoCodigo.Testes
             AutoresDAO.Salvar(new Autor("Ana", "anateodoro@gmail.com", "Uma moça pensando em que carreira seguir."));
             AutoresDAO.Salvar(new Autor("Clara", "clarateodoro@alura.com.br", "Uma menininha linda!"));
 
-            Assert.Throws<ArgumentException>(() =>
-                AutoresDAO.Salvar(
-                    new Autor("Fabiano", "fabianoteodoro@gmail.com", "Um cara iniciando na carrera de TI.")));
+            Autor novoAutor = new Autor("Fabiano", "fabianoteodoro@gmail.com", "Um cara iniciando na carrera de TI.");
+
+            Assert.Equal($"Falha ao salvar. O email {novoAutor.Email} já existe.",
+                AutoresDAO.Salvar(novoAutor));
         }
     }
 }
