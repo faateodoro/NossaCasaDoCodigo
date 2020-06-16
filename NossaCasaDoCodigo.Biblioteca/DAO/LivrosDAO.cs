@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NossaCasaDoCodigo.Biblioteca.DAO
@@ -24,17 +25,11 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
             return $"O livro {novoLivro.Titulo} foi cadastrado com sucesso!";
         }
 
-        public static List<Livro> Buscar(string busca)
+        public static List<Livro> BuscarTitulo(string busca)
         {
-            var livrosFiltrados = new List<Livro>();
-            foreach (var livro in Livros)
-            {
-                if (livro.Titulo.ToUpper().Contains(busca)) 
-                {
-                    livrosFiltrados.Add(livro);
-                }
-            }
-            return livrosFiltrados;
+            return Livros
+                .Where(l => l.Titulo.ToUpper().Contains(busca))
+                .ToList();
         }
     }
 }

@@ -22,14 +22,14 @@ namespace NossaCasaDoCodigo.ConsoleApp
 
             while (confirmacao.ToUpper() == "S")
             {
-                Console.Write("\n\nDigite ao menos duas letras para buscar um livro: ");
+                Console.Write("\n\nDigite ao menos duas letras para buscar um livro pelo título: ");
                 string busca = Console.ReadLine();
 
                 if (busca.Length <= 2)
                     Console.WriteLine($"A busca deve ter ao menos dois caracteres. Quantidade infromada: {busca.Length}.");
                 else
                 {
-                    var livros = LivrosDAO.Buscar(busca.ToUpper());
+                    var livros = LivrosDAO.BuscarTitulo(busca.ToUpper());
                     if (livros.Count > 0)
                     {
                         Console.WriteLine($"\nBusca feita com o termo \"{busca}\".");
@@ -87,7 +87,5 @@ namespace NossaCasaDoCodigo.ConsoleApp
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Sumário quântico", 20, "978-12-34559-09-8",
                 new Autor("Enga Nador", "enga.nei@gmail.com", "Comecei enganando cedo."), new Categoria("Coach Quântico"), 2.0, 35.50));
         }
-
-
     }
 }
