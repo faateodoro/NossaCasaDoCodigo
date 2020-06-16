@@ -29,7 +29,7 @@ namespace NossaCasaDoCodigo.ConsoleApp
                     Console.WriteLine($"A busca deve ter ao menos dois caracteres. Quantidade infromada: {busca.Length}.");
                 else
                 {
-                    var livros = LivrosDAO.BuscarTitulo(busca.ToUpper());
+                    var livros = LivrosDAO.BuscarTitulo(busca);
                     if (livros.Count > 0)
                     {
                         Console.WriteLine($"\nBusca feita com o termo \"{busca}\".");

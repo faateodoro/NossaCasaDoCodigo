@@ -28,7 +28,7 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
         public static List<Livro> BuscarTitulo(string busca)
         {
             return Livros
-                .Where(l => l.Titulo.ToUpper().Contains(busca))
+                .Where(l => l.Titulo.Contains(busca, StringComparison.InvariantCultureIgnoreCase))
                 .ToList();
         }
     }
