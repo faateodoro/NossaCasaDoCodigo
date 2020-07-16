@@ -2,6 +2,7 @@
 using NossaCasaDoCodigo.Biblioteca.DAO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Xunit;
 
@@ -22,21 +23,7 @@ namespace NossaCasaDoCodigo.Testes
         {
             CriaCategoriaDAO();
 
-            var novaCategoria = new Categoria("Testes");
-
-            Assert.Equal($"Falha ao salvar. A categoria {novaCategoria.Nome} já existe.",
-                CategoriasDAO.Salvar(novaCategoria));
-        }
-
-        [Fact]
-        public void CategoriaCriadaDeveMostrarMensagem()
-        {
-            CriaCategoriaDAO();
-
-            var novaCategoria = new Categoria("Programação");
-
-            Assert.Equal($"Categoria {novaCategoria.Nome} criada com sucesso!",
-                CategoriasDAO.Salvar(novaCategoria));
+            Assert.Throws<ArgumentException>(() => CategoriasDAO.Salvar(new Categoria("Testes")));
         }
 
         [Fact]

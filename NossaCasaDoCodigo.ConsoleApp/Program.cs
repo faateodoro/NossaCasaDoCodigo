@@ -9,8 +9,15 @@ namespace NossaCasaDoCodigo.ConsoleApp
     {
         static void Main(string[] args)
         {
+            new AutoresDAO();
+            new CategoriasDAO();
+            new LivrosDAO();
+
+            CadastrarAutoresDao();
+            CadastrarCategoriasDao();
+            CadastrarLivrosDao();
+
             Cabecalho();
-            CriaLivrosDao();
             BuscaLivros();
 
             Console.WriteLine("\nAté mais!");
@@ -63,14 +70,26 @@ namespace NossaCasaDoCodigo.ConsoleApp
 
         private static void Cabecalho()
         {
-            Console.WriteLine("-------------------------------------------------------------");
-            Console.WriteLine("-------------------- Nossa Casa Do Código -------------------");
-            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("------------------------- Nossa Casa Do Código ------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------");
         }
 
-        private static void CriaLivrosDao()
+        private static void CadastrarAutoresDao()
         {
-            new LivrosDAO();
+            AutoresDAO.Salvar(new Autor("Rasmus", "rasmus@php.com", "Criador da linguagem PHP."));
+            AutoresDAO.Salvar(new Autor("Ricardo Rico", "meuemailcaro@richmail.com", "Muito ryco!"));
+            AutoresDAO.Salvar(new Autor("Enga Nador", "enga.nei@gmail.com", "Comecei enganando cedo."));
+        }
+
+        private static void CadastrarCategoriasDao()
+        {
+            CategoriasDAO.Salvar(new Categoria("PHP"));
+            CategoriasDAO.Salvar(new Categoria("Coach Quântico"));
+        }
+
+        private static void CadastrarLivrosDao()
+        {
             LivrosDAO.Salvar(new Livro("PHP para baixinhos",
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "A arte de ser um sobrinho.", 20, "978-12-34567-89-0",
                 new Autor("Rasmus", "rasmus@php.com", "Criador da linguagem PHP."), new Categoria("PHP"), 2.0, 35.50));

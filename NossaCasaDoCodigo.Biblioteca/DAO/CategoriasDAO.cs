@@ -1,27 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace NossaCasaDoCodigo.Biblioteca.DAO
 {
     public class CategoriasDAO
     {
-        private static IList<Categoria> Categorias { get; set; }
+        public static IList<Categoria> Categorias { get; private set; }
 
         public CategoriasDAO()
         {
             Categorias = new List<Categoria>();
         }
 
-        public static string Salvar(Categoria novaCategoria)
+        public static void Salvar(Categoria novaCategoria)
         {
-            if (Categorias.Contains(novaCategoria))
+            if (!Buscar(novaCategoria))
             {
-                return $"Falha ao salvar. A categoria {novaCategoria.Nome} já existe.";
+                Categorias.Add(novaCategoria);
+                Console.WriteLine($"Categoria {novaCategoria.Nome} criada com sucesso!");
             }
+            else
+            {
+                throw new ArgumentException($"Categoria {novaCategoria.Nome} já existe!");
+            }
+        }
 
-            Categorias.Add(novaCategoria);
-            return $"Categoria {novaCategoria.Nome} criada com sucesso!";
+        public static bool Buscar(Categoria novaCategoria)
+        {
+            return Categorias.Contains(novaCategoria);
         }
     }
 }

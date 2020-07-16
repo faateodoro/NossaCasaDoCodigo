@@ -3,10 +3,8 @@ using NossaCasaDoCodigo.Biblioteca.DAO;
 using NossaCasaDoCodigo.Biblioteca.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
+using System.Linq;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NossaCasaDoCodigo.Testes
 {
@@ -35,7 +33,7 @@ namespace NossaCasaDoCodigo.Testes
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50);
 
-            Assert.Equal($"Impossível cadastrar. O livro {novoLivro.Titulo} já existe.", LivrosDAO.Salvar(novoLivro));
+            Assert.True(LivrosDAO.BuscarTitulo(novoLivro.Titulo).Any());
         }
 
         [Fact]
@@ -88,19 +86,6 @@ namespace NossaCasaDoCodigo.Testes
             Assert.Throws<ArgumentException>(() => new Livro("teste",
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, -12));
-        }
-
-        [Fact]
-        public void EmCasoDeSucessoDeveSerRetornadaUmaMensagemDeSucesso()
-        {
-            CriaLivrosDao();
-
-            var novoLivro = new Livro("Evoluindo na plataforma .Net",
-                LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
-                new Autor("Fabiano Teodoro", "faateodoro@gmail.com", "Sem ideias para a descrição."), 
-                new Categoria("Programação"), 2.0, 35.50);
-
-            Assert.Equal($"O livro {novoLivro.Titulo} foi cadastrado com sucesso!", LivrosDAO.Salvar(novoLivro));
         }
 
         private void CriaLivrosDao()

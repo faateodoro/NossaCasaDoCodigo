@@ -2,7 +2,6 @@
 using NossaCasaDoCodigo.Biblioteca.DAO;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace NossaCasaDoCodigo.Testes
@@ -81,15 +80,19 @@ namespace NossaCasaDoCodigo.Testes
         [Fact]
         public void EmailNaoDeveSerDuplicado()
         {
+            CriaAutorDAO();
+
+            Autor novoAutor = new Autor("Fabiano", "fabianoteodoro@gmail.com", "Um cara iniciando na carrera de TI.");
+
+            Assert.True(AutoresDAO.Buscar(novoAutor));
+        }
+
+        private static void CriaAutorDAO()
+        {
             new AutoresDAO();
             AutoresDAO.Salvar(new Autor("Fabiano", "fabianoteodoro@gmail.com", "Um cara iniciando na carrera de TI."));
             AutoresDAO.Salvar(new Autor("Ana", "anateodoro@gmail.com", "Uma moça pensando em que carreira seguir."));
             AutoresDAO.Salvar(new Autor("Clara", "clarateodoro@alura.com.br", "Uma menininha linda!"));
-
-            Autor novoAutor = new Autor("Fabiano", "fabianoteodoro@gmail.com", "Um cara iniciando na carrera de TI.");
-
-            Assert.Equal($"Falha ao salvar. O email {novoAutor.Email} já existe.",
-                AutoresDAO.Salvar(novoAutor));
         }
     }
 }

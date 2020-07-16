@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossaCasaDoCodigo.Bibliotec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossaCasaDoCodigo.Testes", "NossaCasaDoCodigo.Testes\NossaCasaDoCodigo.Testes.csproj", "{DE91940F-A762-461F-AE20-6EE062C6BD44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NossaCasaDoCodigo.ConsoleApp", "NossaCasaDoCodigo.ConsoleApp\NossaCasaDoCodigo.ConsoleApp.csproj", "{0E653463-FD26-4C4B-BDA9-6CB9238A2F45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossaCasaDoCodigo.ConsoleApp", "NossaCasaDoCodigo.ConsoleApp\NossaCasaDoCodigo.ConsoleApp.csproj", "{0E653463-FD26-4C4B-BDA9-6CB9238A2F45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
