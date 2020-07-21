@@ -194,5 +194,10 @@ namespace NossaCasaDoCodigo.Biblioteca
 
 			return this.Titulo == livro.Titulo;
 		}
-	}
+
+        public override int GetHashCode()
+        {
+            return Titulo.GetHashCode();
+        }
+    }
 }

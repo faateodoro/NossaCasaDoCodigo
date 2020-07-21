@@ -7,10 +7,10 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
     {
         public AutoresDAO()
         {
-            Autores = new List<Autor>();
+            Autores = new HashSet<Autor>();
         }
 
-        public static IList<Autor> Autores { get; private set; }
+        public static ISet<Autor> Autores { get; private set; }
 
 
         public static void Salvar(Autor novoAutor)
@@ -19,11 +19,9 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
             {
                 Autores.Add(novoAutor);
                 Console.WriteLine($"Autor {novoAutor.Nome} foi cadastrado com sucesso!");
+                return;
             }
-            else
-            {
-                throw new ArgumentException($"Autor {novoAutor.Nome} já existe!");
-            }
+            throw new ArgumentException($"Autor {novoAutor.Nome} já existe!");
         }
 
         public static bool Buscar(Autor novoAutor)

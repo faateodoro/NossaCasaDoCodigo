@@ -84,5 +84,10 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             return this.Email == autor.Email ;
         }
+
+        public override int GetHashCode()
+        {
+            return Email.GetHashCode();
+        }
     }
 }
