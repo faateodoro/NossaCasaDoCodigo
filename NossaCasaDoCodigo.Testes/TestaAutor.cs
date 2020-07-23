@@ -84,7 +84,7 @@ namespace NossaCasaDoCodigo.Testes
 
             Autor novoAutor = new Autor("Fabiano", "fabianoteodoro@gmail.com", "Um cara iniciando na carrera de TI.");
 
-            Assert.True(AutoresDAO.Buscar(novoAutor));
+            Assert.True(AutoresDAO.Autores.Contains(novoAutor));
         }
 
         private static void CriaAutorDAO()
