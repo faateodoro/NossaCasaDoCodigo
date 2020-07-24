@@ -40,5 +40,10 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             return this.Nome == categoria.Nome;
         }
+
+        public override int GetHashCode()
+        {
+            return Nome.GetHashCode();
+        }
     }
 }

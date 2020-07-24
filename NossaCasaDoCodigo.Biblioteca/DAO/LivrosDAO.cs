@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace NossaCasaDoCodigo.Biblioteca.DAO
 {
@@ -13,15 +13,37 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
             Livros = new List<Livro>();
         }
 
-        public static string SalvaLivro(Livro novoLivro)
+        public static void Salvar(Livro novoLivro)
         {
-            if (Livros.Contains(novoLivro))
+            try
             {
-                return $"Impossível cadastrar. O livro {novoLivro.Titulo} já existe.";
+                CategoriasDAO.Salvar(novoLivro.Categoria);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
             }
 
-            Livros.Add(novoLivro);
-            return $"O livro {novoLivro.Titulo} foi cadastrado com sucesso!";
+            try
+            {
+                AutoresDAO.Salvar(novoLivro.Autor);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            if (Livros.Contains(novoLivro))
+                Console.WriteLine($"Impossível cadastrar. O livro {novoLivro.Titulo} já existe.");
+            else
+                Livros.Add(novoLivro);
+        }
+
+        public static List<Livro> BuscarTitulo(string busca)
+        {
+            return Livros
+                .Where(l => l.Titulo.Contains(busca, StringComparison.InvariantCultureIgnoreCase))
+                .ToList();
         }
     }
 }

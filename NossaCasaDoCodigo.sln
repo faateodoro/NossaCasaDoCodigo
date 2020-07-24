@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossaCasaDoCodigo.Bibliotec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossaCasaDoCodigo.Testes", "NossaCasaDoCodigo.Testes\NossaCasaDoCodigo.Testes.csproj", "{DE91940F-A762-461F-AE20-6EE062C6BD44}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NossaCasaDoCodigo.ConsoleApp", "NossaCasaDoCodigo.ConsoleApp\NossaCasaDoCodigo.ConsoleApp.csproj", "{0E653463-FD26-4C4B-BDA9-6CB9238A2F45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DE91940F-A762-461F-AE20-6EE062C6BD44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE91940F-A762-461F-AE20-6EE062C6BD44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE91940F-A762-461F-AE20-6EE062C6BD44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E653463-FD26-4C4B-BDA9-6CB9238A2F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E653463-FD26-4C4B-BDA9-6CB9238A2F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E653463-FD26-4C4B-BDA9-6CB9238A2F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E653463-FD26-4C4B-BDA9-6CB9238A2F45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

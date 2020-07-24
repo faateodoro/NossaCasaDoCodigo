@@ -1,11 +1,10 @@
 ﻿using NossaCasaDoCodigo.Biblioteca;
 using NossaCasaDoCodigo.Biblioteca.DAO;
+using NossaCasaDoCodigo.Biblioteca.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
+using System.Linq;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NossaCasaDoCodigo.Testes
 {
@@ -30,11 +29,11 @@ namespace NossaCasaDoCodigo.Testes
         {
             CriaLivrosDao();
 
-            var novoLivro = new Livro("PHP para baixinhos", 
-                TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
+            var novoLivro = new Livro("PHP para baixinhos",
+                LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50);
 
-            Assert.Equal($"Impossível cadastrar. O livro {novoLivro.Titulo} já existe.", LivrosDAO.SalvaLivro(novoLivro));
+            Assert.True(LivrosDAO.BuscarTitulo(novoLivro.Titulo).Any());
         }
 
         [Fact]
@@ -76,8 +75,8 @@ namespace NossaCasaDoCodigo.Testes
         [Fact]
         public void EdicaoDeveSerUmNumeroMaiorOuIgualAUm()
         {
-            Assert.Throws<ArgumentException>(() => new Livro("teste", 
-                TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
+            Assert.Throws<ArgumentException>(() => new Livro("teste",
+                LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 0, 50.95));
         }
 
@@ -85,34 +84,21 @@ namespace NossaCasaDoCodigo.Testes
         public void PrecoDeveSerUmNumeroPositivoOuZero()
         {
             Assert.Throws<ArgumentException>(() => new Livro("teste",
-                TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
+                LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, -12));
-        }
-
-        [Fact]
-        public void EmCasoDeSucessoDeveSerRetornadaUmaMensagemDeSucesso()
-        {
-            CriaLivrosDao();
-
-            var novoLivro = new Livro("Evoluindo na plataforma .Net",
-                TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
-                new Autor("Fabiano Teodoro", "faateodoro@gmail.com", "Sem ideias para a descrição."), 
-                new Categoria("Programação"), 2.0, 35.50);
-
-            Assert.Equal($"O livro {novoLivro.Titulo} foi cadastrado com sucesso!", LivrosDAO.SalvaLivro(novoLivro));
         }
 
         private void CriaLivrosDao()
         {
             new LivrosDAO();
-            LivrosDAO.SalvaLivro(new Livro("PHP para baixinhos",
-                TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
+            LivrosDAO.Salvar(new Livro("PHP para baixinhos",
+                LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50));
-            LivrosDAO.SalvaLivro(new Livro("Escrevi este livro e fiquei rico!",
-                TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
+            LivrosDAO.Salvar(new Livro("Escrevi este livro e fiquei rico!",
+                LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50));
-            LivrosDAO.SalvaLivro(new Livro("Seja um coach quântico sem saber o significado de quântico.",
-                TeoriasInvalidasHelper.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
+            LivrosDAO.Salvar(new Livro("Seja um coach quântico sem saber o significado de quântico.",
+                LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.0, 35.50));
         }
     }

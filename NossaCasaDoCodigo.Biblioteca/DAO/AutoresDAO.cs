@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace NossaCasaDoCodigo.Biblioteca.DAO
 {
@@ -8,18 +7,21 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
     {
         public AutoresDAO()
         {
-            Autores = new List<Autor>();
+            Autores = new HashSet<Autor>();
         }
 
-        private static IList<Autor> Autores { get; set; }
+        public static ISet<Autor> Autores { get; private set; }
 
-        public static void SalvaAutor(Autor novoAutor)
+
+        public static void Salvar(Autor novoAutor)
         {
-            if (Autores.Contains(novoAutor))
+            if (!Autores.Contains(novoAutor))
             {
-                throw new ArgumentException("Email já existente!");
+                Autores.Add(novoAutor);
+                Console.WriteLine($"Autor {novoAutor.Nome} foi cadastrado com sucesso!");
+                return;
             }
-            Autores.Add(new Autor(novoAutor.Nome, novoAutor.Email, novoAutor.Descricao));
+            throw new ArgumentException($"Autor {novoAutor.Nome} já existe!");
         }
     }
 }
