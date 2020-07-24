@@ -15,13 +15,11 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
 
         public static void Salvar(Autor novoAutor)
         {
-            if (!Autores.Contains(novoAutor))
-            {
-                Autores.Add(novoAutor);
-                Console.WriteLine($"Autor {novoAutor.Nome} foi cadastrado com sucesso!");
-                return;
-            }
-            throw new ArgumentException($"Autor {novoAutor.Nome} já existe!");
+            if (Autores.Contains(novoAutor))
+                throw new ArgumentException($"Autor {novoAutor.Nome} já existe!");
+            
+            Autores.Add(novoAutor);
+            Console.WriteLine($"Autor {novoAutor.Nome} foi cadastrado com sucesso!");
         }
     }
 }
