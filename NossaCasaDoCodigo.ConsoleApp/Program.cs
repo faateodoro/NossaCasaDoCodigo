@@ -20,6 +20,15 @@ namespace NossaCasaDoCodigo.ConsoleApp
             Cabecalho();
             BuscaLivros();
 
+            Console.Clear();
+
+            CarrinhoDeCompra carrinho = new CarrinhoDeCompra();
+
+            carrinho.AdicionaProduto("PHP para baixinhos", 1);
+            carrinho.AdicionaProduto("PHP para baixinhos", 1);
+            carrinho.AdicionaProduto("Escrevi este livro e fiquei ryco!", 4);
+            carrinho.FinalizarCompra();
+
             Console.WriteLine("\nAté mais!");
         }
 
@@ -92,19 +101,19 @@ namespace NossaCasaDoCodigo.ConsoleApp
         {
             LivrosDAO.Salvar(new Livro("PHP para baixinhos",
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "A arte de ser um sobrinho.", 20, "978-12-34567-89-0",
-                new Autor("Rasmus", "rasmus@php.com", "Criador da linguagem PHP."), new Categoria("PHP"), 2.0, 35.50));
+                new Autor("Rasmus", "rasmus@php.com", "Criador da linguagem PHP."), new Categoria("PHP"), 2.0, 35.50m));
 
             LivrosDAO.Salvar(new Livro("Escrevi este livro e fiquei ryco!",
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Este é sumário é bem caro.", 20, "978-12-76543-89-0",
-                new Autor("Ricardo Rico", "meuemailcaro@richmail.com", "Muito ryco!"), new Categoria("Coach Quântico"), 2.0, 35.50));
+                new Autor("Ricardo Rico", "meuemailcaro@richmail.com", "Muito ryco!"), new Categoria("Coach Quântico"), 2.0, 35.50m));
 
             LivrosDAO.Salvar(new Livro("Seja um coach quântico sem saber o significado de quântico.",
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Sumário quântico", 20, "978-12-34567-09-8",
-                new Autor("Enga Nador", "enga.nei@gmail.com", "Comecei enganando cedo."), new Categoria("Coach Quântico"), 2.0, 35.50));
+                new Autor("Enga Nador", "enga.nei@gmail.com", "Comecei enganando cedo."), new Categoria("Coach Quântico"), 2.0, 35.50m));
 
             LivrosDAO.Salvar(new Livro("Seja um coach quântico sem saber o significado de quântico 2.",
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "Sumário quântico", 20, "978-12-34559-09-8",
-                new Autor("Enga Nador", "enga.nei@gmail.com", "Comecei enganando cedo."), new Categoria("Coach Quântico"), 2.0, 35.50));
+                new Autor("Enga Nador", "enga.nei@gmail.com", "Comecei enganando cedo."), new Categoria("Coach Quântico"), 2.0, 35.50m));
         }
     }
 }

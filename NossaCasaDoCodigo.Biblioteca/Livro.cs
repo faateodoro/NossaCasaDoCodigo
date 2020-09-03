@@ -150,9 +150,9 @@ namespace NossaCasaDoCodigo.Biblioteca
 			}
 		}
 
-		private double _preco;
+		private decimal _preco;
 
-		public double Preco
+		public decimal Preco
 		{
 			get 
 			{
@@ -170,7 +170,7 @@ namespace NossaCasaDoCodigo.Biblioteca
 		#endregion
 
 		public Livro(string titulo, string resumo, string sumario, int paginas, string iSBN, 
-			Autor autor, Categoria categoria, double edicao, double preco)
+			Autor autor, Categoria categoria, double edicao, decimal preco)
 		{
 			Titulo = titulo;
 			Resumo = resumo;
