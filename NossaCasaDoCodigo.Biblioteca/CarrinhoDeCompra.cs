@@ -22,9 +22,7 @@ namespace NossaCasaDoCodigo.Biblioteca
                 throw new ArgumentException("Número inválido. Não pode ser 0 ou um número negativo.");
 
             if (livro == null)
-            {
                 throw new ArgumentNullException("Este livro não existe.");
-            }
 
             if (Carrinho.ContainsKey(livro))
             {
@@ -39,14 +37,12 @@ namespace NossaCasaDoCodigo.Biblioteca
 
         public void FinalizarCompra()
         {
-            CarrinhoEstaVazio();
-            DataHoraVenda = DateTime.Now;
-            MostrarLivrosNoCarrinho();
-        }
+            if (!Carrinho.Any())
+                throw new ArgumentNullException("O carrinho está vazio. A compra não pode ser finalizada.");
 
-        private void MostrarLivrosNoCarrinho()
-        {
+            DataHoraVenda = DateTime.Now;
             decimal totalDaCompra = 0m;
+
             foreach (var item in Carrinho)
             {
                 var subtotal = item.Key.Preco * item.Value;
@@ -62,14 +58,6 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             Console.WriteLine($"\nTotal da compra: R${totalDaCompra}");
             Console.WriteLine("\n===========================================================\n\n");
-        }
-
-        private void CarrinhoEstaVazio()
-        {
-            if (!Carrinho.Any())
-            {
-                throw new ArgumentNullException("O carrinho está vazio. A compra não pode ser finalizada.");
-            }
         }
     }
 }
