@@ -14,13 +14,11 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
 
         public static void Salvar(Categoria novaCategoria)
         {
-            if (!Categorias.Contains(novaCategoria))
-            {
-                Categorias.Add(novaCategoria);
-                Console.WriteLine($"Categoria {novaCategoria.Nome} criada com sucesso!");
-                return;
-            }
-            throw new ArgumentException($"Categoria {novaCategoria.Nome} já existe!");
+            if (Categorias.Contains(novaCategoria))
+                throw new ArgumentException($"Categoria {novaCategoria.Nome} já existe!");
+            
+            Categorias.Add(novaCategoria);
+            Console.WriteLine($"Categoria {novaCategoria.Nome} criada com sucesso!");
         }
     }
 }
