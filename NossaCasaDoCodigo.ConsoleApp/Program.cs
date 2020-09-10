@@ -12,6 +12,7 @@ namespace NossaCasaDoCodigo.ConsoleApp
             new AutoresDAO();
             new CategoriasDAO();
             new LivrosDAO();
+            new ProdutosDAO();
 
             CadastrarAutoresDao();
             CadastrarCategoriasDao();
@@ -24,9 +25,9 @@ namespace NossaCasaDoCodigo.ConsoleApp
 
             CarrinhoDeCompra carrinho = new CarrinhoDeCompra();
 
-            carrinho.AdicionaProduto("PHP para baixinhos", 1);
-            carrinho.AdicionaProduto("PHP para baixinhos", 1);
-            carrinho.AdicionaProduto("Escrevi este livro e fiquei ryco!", 4);
+            carrinho.AdicionaProduto(LivrosHelpers.LIVRO1, 1);
+            carrinho.AdicionaProduto(LivrosHelpers.LIVRO1, 1);
+            carrinho.AdicionaProduto(LivrosHelpers.LIVRO4, 4);
             carrinho.FinalizarCompra();
 
             Console.WriteLine("\nAté mais!");

@@ -14,45 +14,35 @@ namespace NossaCasaDoCodigo.Biblioteca
         public CarrinhoDeCompra()
         {
             Carrinho = new Dictionary<Livro, int>();
-            new ProdutosDAO();
         }
 
-        public void AdicionaProduto(string tituloDoLivro, int quantidade)
+        public void AdicionaProduto(Livro livro, int quantidade)
         {
-            Livro livro = ProdutosDAO.BuscarLivroPorTitulo(tituloDoLivro);
-            int estoqueLivro = ProdutosDAO.BuscarQuantidadePorLivro(livro);
-            int quantidadeAtual;
-
             if (livro == null)
             {
                 throw new ArgumentNullException("Este livro não existe.");
             }
 
-            if (quantidade > estoqueLivro)
-            {
-                throw new ArgumentException("A quantidade requisitada é maior que o estoque do produto.");
-            }
-
             if (Carrinho.ContainsKey(livro))
             {
-                Carrinho.TryGetValue(livro, out quantidadeAtual);
+                Carrinho.TryGetValue(livro, out int quantidadeAtual);
                 Carrinho[livro] = quantidade + quantidadeAtual;
             }
             else
             {
                 Carrinho.Add(livro, quantidade);
             }
-
-            ProdutosDAO.RemoverQuantidade(livro, quantidade);
         }
 
         public void FinalizarCompra()
         {
-            if (!Carrinho.Any())
-            {
-                throw new ArgumentNullException("O carrinho está vazio. A compra não pode ser finalizada.");
-            }
+            CarrinhoEstaVazio();
             DataHoraVenda = DateTime.Now;
+            MostrarLivrosNoCarrinho();
+        }
+
+        private static void MostrarLivrosNoCarrinho()
+        {
             decimal totalDaCompra = 0m;
             foreach (var item in Carrinho)
             {
@@ -69,6 +59,14 @@ namespace NossaCasaDoCodigo.Biblioteca
 
             Console.WriteLine($"\nTotal da compra: R${totalDaCompra}");
             Console.WriteLine("\n===========================================================\n\n");
+        }
+
+        private static void CarrinhoEstaVazio()
+        {
+            if (!Carrinho.Any())
+            {
+                throw new ArgumentNullException("O carrinho está vazio. A compra não pode ser finalizada.");
+            }
         }
     }
 }
