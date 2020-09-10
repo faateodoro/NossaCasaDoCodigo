@@ -18,7 +18,9 @@ namespace NossaCasaDoCodigo.Biblioteca
 
         public void AdicionaProduto(Livro livro, int quantidade)
         {
-            NumeroEhValido(quantidade);
+            if (quantidade < 1)
+                throw new ArgumentException("Número inválido. Não pode ser 0 ou um número negativo.");
+
             if (livro == null)
             {
                 throw new ArgumentNullException("Este livro não existe.");
@@ -35,12 +37,6 @@ namespace NossaCasaDoCodigo.Biblioteca
             }
         }
 
-        private static void NumeroEhValido(int quantidade)
-        {
-            if (quantidade < 1)
-                throw new ArgumentException("Número inválido. Não pode ser 0 ou um número negativo.");
-        }
-
         public void FinalizarCompra()
         {
             CarrinhoEstaVazio();
@@ -48,7 +44,7 @@ namespace NossaCasaDoCodigo.Biblioteca
             MostrarLivrosNoCarrinho();
         }
 
-        private static void MostrarLivrosNoCarrinho()
+        private void MostrarLivrosNoCarrinho()
         {
             decimal totalDaCompra = 0m;
             foreach (var item in Carrinho)
@@ -68,7 +64,7 @@ namespace NossaCasaDoCodigo.Biblioteca
             Console.WriteLine("\n===========================================================\n\n");
         }
 
-        private static void CarrinhoEstaVazio()
+        private void CarrinhoEstaVazio()
         {
             if (!Carrinho.Any())
             {
