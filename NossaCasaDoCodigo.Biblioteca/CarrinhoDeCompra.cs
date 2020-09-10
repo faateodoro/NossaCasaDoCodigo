@@ -18,6 +18,7 @@ namespace NossaCasaDoCodigo.Biblioteca
 
         public void AdicionaProduto(Livro livro, int quantidade)
         {
+            NumeroEhValido(quantidade);
             if (livro == null)
             {
                 throw new ArgumentNullException("Este livro não existe.");
@@ -32,6 +33,12 @@ namespace NossaCasaDoCodigo.Biblioteca
             {
                 Carrinho.Add(livro, quantidade);
             }
+        }
+
+        private static void NumeroEhValido(int quantidade)
+        {
+            if (quantidade < 1)
+                throw new ArgumentException("Número inválido. Não pode ser 0 ou um número negativo.");
         }
 
         public void FinalizarCompra()

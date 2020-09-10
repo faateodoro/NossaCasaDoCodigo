@@ -22,11 +22,5 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
             EstoqueProdutos.Add(LivrosHelpers.LIVRO4);
             EstoqueProdutos.Add(LivrosHelpers.LIVRO5);
         }
-
-        private static void NumeroEhValido(int quantidade)
-        {
-            if (quantidade < 1)
-                throw new ArgumentException("Número inválido. Não pode ser 0 ou um número negativo.");
-        }
     }
 }
