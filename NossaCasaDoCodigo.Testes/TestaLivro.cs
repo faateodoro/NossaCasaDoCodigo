@@ -40,7 +40,7 @@ namespace NossaCasaDoCodigo.Testes
         public void ResumoDeveTerAoMenos500Caracteres()
         {
             Assert.Throws<ArgumentException>(() => new Livro("Titulo Novo", "Bem menos de 500 caracteres.",
-                null, 20, "978-12-34567-89-0",
+                "Teste", 20, "978-12-34567-89-0",
                 new Autor("nome", "email@gmail.com", "minha descrição"), new Categoria("categoria"), 2.1, 50.95m));
         }
 
