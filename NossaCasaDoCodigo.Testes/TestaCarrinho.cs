@@ -20,7 +20,6 @@ namespace NossaCasaDoCodigo.Testes
         [Fact]
         public void ValorDeDataHoraDaVendaDeveSerRegistrada()
         {
-            //var Carrinho = new CarrinhoDeCompra();
             Carrinho.AdicionaProduto(LivrosHelpers.LIVRO1, 1);
             Carrinho.FinalizarCompra();
 
@@ -30,7 +29,6 @@ namespace NossaCasaDoCodigo.Testes
         [Fact]
         public void OLivroDeveSerCadastradoNoEstoqueParaFazerParteDeUmaVenda()
         {
-            //var Carrinho = new CarrinhoDeCompra();
             Assert.Throws<ArgumentNullException>(() => Carrinho.AdicionaProduto(null, 1));
         }
 
@@ -40,7 +38,6 @@ namespace NossaCasaDoCodigo.Testes
         public void QuantidadeDeLivrosVendidasDeveSerMaiorQueZero(string titulo, string resumo, string sumario, int paginas,
             string iSBN, Autor autor, Categoria categoria, double edicao, decimal preco, int quantidade)
         {
-            //var Carrinho = new CarrinhoDeCompra();
             Assert.Throws<ArgumentException>(() => Carrinho.AdicionaProduto(new Livro(titulo, resumo, sumario, paginas,
             iSBN, autor, categoria, edicao, preco), quantidade));
         }
