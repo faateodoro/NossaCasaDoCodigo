@@ -9,7 +9,8 @@ namespace NossaCasaDoCodigo.Testes
 {
     public class TestaCarrinho
     {
-        private static CarrinhoDeCompra Carrinho = new CarrinhoDeCompra();
+        private CarrinhoDeCompra Carrinho = new CarrinhoDeCompra();
+
         [Fact]
         public void DeveTerAoMenosUmLivroParaFecharOCarrinho()
         {
@@ -33,7 +34,6 @@ namespace NossaCasaDoCodigo.Testes
         }
 
         [Theory]
-        [MemberData(nameof(LivroObjeto))]
         [MemberData(nameof(LivroObjeto))]
         public void QuantidadeDeLivrosVendidasDeveSerMaiorQueZero(string titulo, string resumo, string sumario, int paginas,
             string iSBN, Autor autor, Categoria categoria, double edicao, decimal preco, int quantidade)

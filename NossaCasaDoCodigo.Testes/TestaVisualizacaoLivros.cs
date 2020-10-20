@@ -31,7 +31,7 @@ namespace NossaCasaDoCodigo.Testes
             Assert.True(livros.Count == 2);
         }
 
-        private static void CadastrarAutoresDao()
+        private void CadastrarAutoresDao()
         {
             new AutoresDAO();
             AutoresDAO.Salvar(new Autor("Rasmus", "rasmus@php.com", "Criador da linguagem PHP."));
@@ -39,14 +39,14 @@ namespace NossaCasaDoCodigo.Testes
             AutoresDAO.Salvar(new Autor("Enga Nador", "enga.nei@gmail.com", "Comecei enganando cedo."));
         }
 
-        private static void CadastrarCategoriasDao()
+        private void CadastrarCategoriasDao()
         {
             new CategoriasDAO();
             CategoriasDAO.Salvar(new Categoria("PHP"));
             CategoriasDAO.Salvar(new Categoria("Coach Quântico"));
         }
 
-        private static void CadastrarLivrosDao()
+        private void CadastrarLivrosDao()
         {
             LivrosDAO.Salvar(new Livro("PHP para baixinhos",
                 LivrosHelpers.RESUMO_COM_MAIS_DE_500_CARACTERES, "A arte de ser um sobrinho.", 20, "978-12-34567-89-0",
