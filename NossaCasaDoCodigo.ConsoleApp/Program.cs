@@ -11,7 +11,7 @@ namespace NossaCasaDoCodigo.ConsoleApp
         {
             new AutoresDAO();
             new CategoriasDAO();
-            new LivrosDAO();
+            var livrosDAO = new LivrosDAO();
 
             CadastrarAutoresDao();
             CadastrarCategoriasDao();
@@ -27,7 +27,7 @@ namespace NossaCasaDoCodigo.ConsoleApp
                 string busca = Console.ReadLine();
                 try
                 {
-                    var livros = LivrosDAO.MostrarLivrosBuscados(busca);
+                    var livros = livrosDAO.MostrarLivrosBuscados(busca);
                     Console.WriteLine($"\nBusca feita com o termo \"{busca}\".");
                     int numero = 1;
                     foreach (var livro in livros)

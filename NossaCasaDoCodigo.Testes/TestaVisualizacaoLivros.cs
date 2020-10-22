@@ -11,22 +11,35 @@ namespace NossaCasaDoCodigo.Testes
         [Theory]
         [InlineData("")]
         [InlineData("a")]
-        public void BuscaDeveTerAoMenosDoisCaracteres(string busca) =>
-            Assert.Throws<ArgumentException>(() => LivrosDAO.MostrarLivrosBuscados(busca));
+        public void BuscaDeveTerAoMenosDoisCaracteres(string busca)
+        {
+            var livrosDAO = new LivrosDAO();
+            CadastrarAutoresDao();
+            CadastrarCategoriasDao();
+            CadastrarLivrosDao();
+            Assert.Throws<ArgumentException>(() => livrosDAO.MostrarLivrosBuscados(busca));
+        }
+
 
         [Fact]
-        public void BuscaNaoDeveSerNula() =>
-            Assert.Throws<NullReferenceException>(() => LivrosDAO.MostrarLivrosBuscados(null));
+        public void BuscaNaoDeveSerNula()
+        {
+            var livrosDAO = new LivrosDAO();
+            CadastrarAutoresDao();
+            CadastrarCategoriasDao();
+            CadastrarLivrosDao();
+            Assert.Throws<NullReferenceException>(() => livrosDAO.MostrarLivrosBuscados(null));
+        }
 
         [Fact]
         public void BuscaComOTermoCoachRetornaDoisLivros()
         {
-            new LivrosDAO();
+            var livrosDAO = new LivrosDAO();
             CadastrarAutoresDao();
             CadastrarCategoriasDao();
             CadastrarLivrosDao();
 
-            var livros = LivrosDAO.MostrarLivrosBuscados("Coach");
+            var livros = livrosDAO.MostrarLivrosBuscados("Coach");
 
             Assert.True(livros.Count == 2);
         }

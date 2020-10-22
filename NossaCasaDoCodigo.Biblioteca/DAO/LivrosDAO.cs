@@ -46,7 +46,7 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
                 .ToList();
         }
 
-        public static IList<Livro> MostrarLivrosBuscados(string busca)
+        public IList<Livro> MostrarLivrosBuscados(string busca)
         {
             if (busca == null)
                 throw new NullReferenceException("A busca não pode ser nula!");
