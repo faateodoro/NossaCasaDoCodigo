@@ -45,5 +45,22 @@ namespace NossaCasaDoCodigo.Biblioteca.DAO
                 .Where(l => l.Titulo.Contains(busca, StringComparison.InvariantCultureIgnoreCase))
                 .ToList();
         }
+
+        public IList<Livro> MostrarLivrosBuscados(string busca)
+        {
+            if (busca == null)
+                throw new NullReferenceException("A busca não pode ser nula!");
+
+            if (busca.Trim().Length < 2)
+                throw new ArgumentException($"A busca deve ter ao menos dois caracteres. Quantidade infromada: {busca.Length}.");
+
+            var livros = BuscarTitulo(busca);
+            if (livros.Count > 0)
+            {
+                return livros;
+            }
+            else
+                throw new ArgumentException($"\nBusca feita com o termo \"{busca}\" não trouxe resultados.");
+        }
     }
 }

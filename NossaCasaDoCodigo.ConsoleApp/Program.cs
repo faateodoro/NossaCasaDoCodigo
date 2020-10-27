@@ -11,15 +11,52 @@ namespace NossaCasaDoCodigo.ConsoleApp
         {
             new AutoresDAO();
             new CategoriasDAO();
-            new LivrosDAO();
-            new ProdutosDAO();
+            var livrosDAO = new LivrosDAO();
 
             CadastrarAutoresDao();
             CadastrarCategoriasDao();
             CadastrarLivrosDao();
 
             Cabecalho();
-            BuscaLivros();
+
+            var confirmacao = "S";
+
+            while (confirmacao.ToUpper() == "S")
+            {
+                Console.Write("\n\nDigite ao menos duas letras para buscar um livro pelo título: ");
+                string busca = Console.ReadLine();
+                try
+                {
+                    var livros = livrosDAO.MostrarLivrosBuscados(busca);
+                    Console.WriteLine($"\nBusca feita com o termo \"{busca}\".");
+                    int numero = 1;
+                    foreach (var livro in livros)
+                    {
+                        Console.WriteLine($"\n\nLivro número {numero}\n");
+                        Console.WriteLine($"Título: {livro.Titulo}");
+                        Console.WriteLine($"Autor: {livro.Autor.Nome}");
+                        Console.WriteLine($"Categoria: {livro.Categoria.Nome}");
+                        Console.WriteLine($"Resumo: {livro.Resumo}.");
+                        Console.WriteLine($"Sumario: {livro.Sumario}");
+                        Console.WriteLine($"ISBN: {livro.ISBN}");
+                        Console.WriteLine($"Edição: {livro.Edicao}");
+                        Console.WriteLine($"Páginas: {livro.Paginas}");
+                        Console.WriteLine($"Preço: R${livro.Preco}");
+
+                        numero++;
+                    }
+                }
+                catch (NullReferenceException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                Console.WriteLine("\n\nDeseja fazer outra busca? (S/N): ");
+                confirmacao = Console.ReadLine();
+            }
 
             Console.Clear();
 
@@ -31,51 +68,6 @@ namespace NossaCasaDoCodigo.ConsoleApp
             carrinho.FinalizarCompra();
 
             Console.WriteLine("\nAté mais!");
-        }
-
-        private static void BuscaLivros()
-        {
-            var confirmacao = "S";
-
-            while (confirmacao.ToUpper() == "S")
-            {
-                Console.Write("\n\nDigite ao menos duas letras para buscar um livro pelo título: ");
-                string busca = Console.ReadLine();
-
-                if (busca.Length <= 2)
-                    Console.WriteLine($"A busca deve ter ao menos dois caracteres. Quantidade infromada: {busca.Length}.");
-                else
-                {
-                    var livros = LivrosDAO.BuscarTitulo(busca);
-                    if (livros.Count > 0)
-                    {
-                        Console.WriteLine($"\nBusca feita com o termo \"{busca}\".");
-                        int numero = 1;
-                        foreach (var livro in livros)
-                        {
-                            Console.WriteLine($"\n\nLivro número {numero}\n");
-                            Console.WriteLine($"Título: {livro.Titulo}");
-                            Console.WriteLine($"Autor: {livro.Autor.Nome}");
-                            Console.WriteLine($"Categoria: {livro.Categoria.Nome}");
-                            Console.WriteLine($"Resumo: {livro.Resumo}.");
-                            Console.WriteLine($"Sumario: {livro.Sumario}");
-                            Console.WriteLine($"ISBN: {livro.ISBN}");
-                            Console.WriteLine($"Edição: {livro.Edicao}");
-                            Console.WriteLine($"Páginas: {livro.Paginas}");
-                            Console.WriteLine($"Preço: R${livro.Preco}");
-
-                            numero++;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"\nBusca feita com o termo \"{busca}\" não trouxe resultados.");
-                    }
-                }
-
-                Console.WriteLine("\n\nDeseja fazer outra busca? (S/N): ");
-                confirmacao = Console.ReadLine();
-            }
         }
 
         private static void Cabecalho()
